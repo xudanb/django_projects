@@ -1,0 +1,26 @@
+{% extends 'base_results.html' %}
+
+{% block content %}
+{% ifequal owner.playlist_set.all.count 0 %}
+<p>Go to <a href="/search">search</a> to build your playlist.</p>
+{% endifequal %}
+
+{% ifequal owner.playlist_set.all.count 1 %}
+<p>Go to <a href="/search">search</a> to save your playlist.</p>
+{% endifequal %}
+
+{% for playlist in owner.playlist_set.all %}
+  {% ifnotequal playlist.name 'temp' %}
+    <h3>{{ playlist.name }}</h3>
+    {% for song in playlist.songs.all %}
+      <p>{{ song.track_name }} -- {{ song.artist.artist_name }}</p>
+    {% endfor %}
+    <form action="/play/start" method="get">
+      <input name="n" type="hidden" value={{ playlist.name }}>
+      <input type="submit" class="btn" value="generate!"/>
+    </form>
+    <br><br>
+  {% endifnotequal %}
+{% endfor %}
+
+{% endblock %}

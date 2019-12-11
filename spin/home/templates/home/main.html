@@ -1,0 +1,10 @@
+{% extends "base_menu.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<p>Welcome! The song playing feature of this website is supported by Spotify's Web Playback SDK. </p>
+<p>You are now logged in. Click here to <a href='/accounts/logout?next=/'>logout</a>.</p>
+{% else %}
+<p>Click here to <a href='/accounts/login'>login</a> first.</p>
+{% endif %}
+{% endblock %}

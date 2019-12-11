@@ -1,0 +1,18 @@
+{% extends "base_menu.html" %}
+
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'home/styles1.css' %}">
+
+<script>var uris = "{{ temp.uris }}"</script>
+<script src="https://sdk.scdn.co/spotify-player.js"></script>
+<script src="{% static 'play/script.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<p>Go back to <a href='/play'>play</a></p>
+<br>
+<p>Currently playing: </p>
+<p id="current-track-name"></p>
+<img id="current-track" height="150" width="150"/>
+{% endblock %}

@@ -1,0 +1,35 @@
+.jumbotron {
+  background-image: url("jum.png");
+  background-size: cover;
+  padding: 60px;
+  margin-bottom: 0;
+}
+
+.navbar ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nav-link {
+  height: 45px;
+  color: white;
+  font-size: 20px;
+}
+
+.btn {
+  background-color: #1DB954;
+}
+
+input, select, textarea{
+  color: #191414;
+}
+
+body {
+  background-image: url("bg.png");
+  background-size: cover;
+
+  color: white;
+  font-family: "verdana";
+  font-size: 15px;
+}

@@ -1,0 +1,32 @@
+{% extends 'base_results.html' %}
+
+{% block content %}
+{% ifnotequal 0 playlist.songs.count %}
+<p>Save playlist:</p>
+<form action="" method="post">
+  {% csrf_token %}
+  <input name="n" type="text" placeholder="input name..." class="form-control form-control-sm">
+  <br>
+  <input type="submit" class="btn" value="save!"/>
+</form>
+{% endifnotequal %}
+<br>
+<p>Search for songs:</p>
+<form action="{% url 'search:results' %}" method="get">
+  <input name="q" type="text" placeholder="search for songs..." class="form-control form-control-sm">
+  <br>
+  <select name="t" class="form-control form-control-sm">
+    <option value="song">by song name</option>
+    <option value="artist">by artist name</option>
+  </select>
+  <br>
+  <input type="submit" class="btn" value="search!"/>
+</form>
+<br>
+{% ifnotequal 0 playlist.songs.count %}
+<p>You added the following songs:</p>
+{% for song in playlist.songs.all %}
+  <p>{{ song.track_name }} -- {{ song.artist.artist_name }}</p>
+{% endfor %}
+{% endifnotequal %}
+{% endblock %}

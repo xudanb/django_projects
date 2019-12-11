@@ -1,0 +1,37 @@
+{% extends 'base_results.html' %}
+
+{% block content %}
+<p>Go back to <a href='/search'>search</a></p>
+<br>
+
+{% ifequal type 'song' %}
+{% for song in results %}
+  <p>
+  {{ song.track_name }} -- {{ song.artist.artist_name }}
+  <form action="" method="post">
+    {% csrf_token %}
+    <input name="u" type="hidden" value={{ song.track_uri }}>
+    <input type="submit" class="btn" value="add to playlist"/>
+  </form>
+  </p>
+  <br>
+{% endfor %}
+{% else %}
+{% ifequal type 'artist' %}
+{% for artist in results %}
+  {% for song in artist.song_set.all %}
+    <p>
+    {{ song.track_name }} -- {{ artist.artist_name }}
+    <form action="" method="post">
+      {% csrf_token %}
+      <input name="u" type="hidden" value={{ song.track_uri }}>
+      <input type="submit" class="btn" value="add to playlist"/>
+    </form>
+    </p>
+    <br>
+  {% endfor %}
+{% endfor %}
+{% endifequal %}
+{% endifequal %}
+
+{% endblock %}

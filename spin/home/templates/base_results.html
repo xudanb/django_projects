@@ -1,0 +1,24 @@
+{% extends "base_bootstrap.html" %}
+
+{% block head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'home/styles2.css' %}">
+{% endblock %}
+
+{% block nav %}
+{% if user.is_authenticated %}
+<nav class="navbar">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" href="/">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/search">Search</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/play">Play</a>
+    </li>
+  </ul>
+</nav>
+{% endif %}
+{% endblock %}
